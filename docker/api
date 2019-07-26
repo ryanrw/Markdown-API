@@ -1,0 +1,14 @@
+FROM node:alpine
+
+ENV NPM_CONFIG_LOGLEVEL info
+ENV PORT 3000
+
+WORKDIR /var/app
+
+COPY . .
+
+RUN yarn
+
+CMD ["yarn", "start"]
+
+EXPOSE 3000

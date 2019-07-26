@@ -1,0 +1,20 @@
+version: '3.1'
+
+services: 
+  api:
+    image: willpower/markdown-api:latest
+    volumes: 
+      - ./src:/var/app/src
+    ports: 
+      - 3000:3000
+    links:
+      - database
+  
+  database:
+    image: postgres:alpine
+    ports:
+      - 5432:5432
+    volumes: 
+      - ./docker/pql_data:/var/lib/postgresql/data
+    environment: 
+      POSTGRES_PASSWORD: "${DATABASE_PASSWORD}"
